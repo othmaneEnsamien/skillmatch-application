@@ -1,4 +1,4 @@
-<div class="container" style="margin:100px">
+{{-- <div class="container" style="margin:100px">
 
 
     <h1 style="font-size:25px;color: rgb(62, 62, 62)">Mes competences maitriser :</h1>
@@ -21,7 +21,7 @@
         </div>
     </div>
 
-</div>
+</div> --}}
 <div>
     <style>
         nav svg {
