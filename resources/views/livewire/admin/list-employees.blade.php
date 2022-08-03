@@ -1,41 +1,60 @@
 <div>
-  <br>
-  <br>
-  <br>
-  <button type="button" class="btn btn-success">Add</button>
+    <style>
+        nav svg {
+            height: 20px
+        }
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach($employees as $employee)
-    <tr>
-      <th scope="row">{{$employee->id}}</th>
-      <td>{{$employee->prenom}}</td>
-      <td>{{$employee->nom}}</td>
-      <td>{{$employee->email}}</td>
-      <td><button type="button" class="btn btn-outline-primary">Edit</button>
-<button type="button" class="btn btn-outline-secondary">Delete</button></td>
-    </tr>
-    @endforeach
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Larry</td>
-      <td>the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+        nav .hidden {
+            display: block !important;
+        }
+    </style>
+    <div class="container" style="padding:30px 0px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <h2 style="color:#13404D ;font-family:Roboto Slab">INFOS USERS
+                            </h2>
+
+
+
+                            {{-- <div class="col-md-4">
+                              <input type="text" class="form-control" placeholder="Search ..." wire:model="searchTerm">
+                          </div> --}}
+
+                        </div>
+
+
+                    </div>
+                    <div class="panel-body">
+                        {{-- @if (Session::has('message'))
+                           <div class="alert-success" role="alert">{{ Session::get('message') }}</div>
+                      @endif --}}
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>projet</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach ($projects as $project)
+                                    <tr>
+                                        <th scope="row"></th>
+
+                                        <td> {{ $project->intitule_projet }}</td>
+                                    </tr>
+                                @endforeach
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

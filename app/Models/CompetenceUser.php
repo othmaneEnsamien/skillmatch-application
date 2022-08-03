@@ -12,6 +12,18 @@ class CompetenceUser extends Pivot
 
     protected $table = 'competence_user';
     protected $fillable = [
+        'id',
+        'user_id',
+        'competence_id',
         'niveau'
     ];
+
+    public function comp()
+    {
+        return $this->belongsTo(Competence::class);
+    }
+    public function Us()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -64,6 +64,7 @@
                                 @endif
                             </tbody>
                         </table>
+                        {{ $projets->links('pagination-links') }}
                     </div>
                 </div>
             </div>

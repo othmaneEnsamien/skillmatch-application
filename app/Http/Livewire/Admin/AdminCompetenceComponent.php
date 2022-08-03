@@ -20,7 +20,7 @@ class AdminCompetenceComponent extends Component
 
     public function render()
     {
-        $competences = Competence::all();
+        $competences = Competence::paginate(6);
         return view('livewire.admin.admin-competence-component', compact('competences'))->layout('layouts.default');
     }
 }

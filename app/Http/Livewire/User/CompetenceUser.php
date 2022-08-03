@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CompetenceUser extends Component
 {
+
     public function render()
     {
         $allcompetences = Competence::all();

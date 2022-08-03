@@ -84,8 +84,8 @@
                             </a>
 
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('user.form-competences') }}">competences
-                                    maitriser</a>
+                                <a class="dropdown-item" href="{{ route('user.form-competences') }}">Saisir vos compétences
+                                </a>
                                 <a class="dropdown-item" href="{{ route('competence.user') }}">Mes compétences</a>
                                 <a class="dropdown-item" href="{{ route('projet.user') }}">Mes projets</a>
                             </div>

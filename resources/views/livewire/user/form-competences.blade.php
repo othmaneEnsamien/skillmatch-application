@@ -20,7 +20,7 @@
                 <select class="form-select" id="inputGroupSelect02" wire:model="intitule_competence">
                     <option value="0"> </option>
                     @foreach ($competences as $competence)
-                        <option value="{{ $competence->intitule_competence }}">{{ $competence->intitule_competence }}
+                        <option value="{{ $competence->id }}">{{ $competence->intitule_competence }}
                         </option>
                     @endforeach
                 </select>
@@ -59,7 +59,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
+            <button type="submit" class="btn btn-primary m-2">Enregistrer</button>
         </form>
 
     </div>

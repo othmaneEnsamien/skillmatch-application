@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\Models\Project;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class AdminProjetComponent extends Component
 {
@@ -11,6 +12,7 @@ class AdminProjetComponent extends Component
 
 
     public $searchTerm;
+    use WithPagination;
 
 
 
@@ -136,7 +138,7 @@ class AdminProjetComponent extends Component
 
     public function render()
     {
-        $projets = Project::where('intitule_projet', 'like', '%' . $this->searchTerm . '%')->orWhere('id', 'like', '%' . $this->searchTerm . '%')->get();
+        $projets = Project::where('intitule_projet', 'like', '%' . $this->searchTerm . '%')->orWhere('id', 'like', '%' . $this->searchTerm . '%')->paginate(5);
 
         return view('livewire.admin.admin-projet-component', compact('projets'))->layout('layouts.default');
     }

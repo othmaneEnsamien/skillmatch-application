@@ -11,6 +11,7 @@ use App\Http\Livewire\Admin\AdminAddCompetenceComponent;
 use App\Http\Livewire\Admin\AdminEditCompetenceComponent;
 use App\Http\Livewire\Admin\AdminProjetCompetenceComponent;
 use App\Http\Livewire\Admin\AffichageUserCompetence;
+use App\Http\Livewire\Admin\ListEmployees;
 use App\Http\Livewire\Admin\ProjectAffecterAuxEmploye;
 use App\Http\Livewire\User\CompetenceUser;
 use App\Http\Livewire\User\ProjetUser;
@@ -48,6 +49,7 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function () 
     Route::get('/admin/usercompetenceniveau', AffichageUserCompetence::class)->name('competenceuser');
     Route::get('/admin/projetcompetence', AdminProjetCompetenceComponent::class)->name('adminprojetcompetence');
     Route::get('/admin/projetaffecteremployee', ProjectAffecterAuxEmploye::class)->name('projetaffecter');
+    Route::get('/admin/listprojetemploye', ListEmployees::class)->name('listprojet');
 });
 
 // Route::middleware([

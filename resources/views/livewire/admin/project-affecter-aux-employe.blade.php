@@ -1,8 +1,14 @@
 <div>
     <style>
         nav svg {
-            height: 20px
+            height: 20px;
+
         }
+
+        /* .items-center {
+            margin-top: 50px;
+            background: white
+        } */
 
         nav .hidden {
             display: block !important;
@@ -29,86 +35,213 @@
 
 
                     </div>
-                    <div class="row mb-4">
+                    <div class="row  mb-4">
+                        {{-- <div class="col-md-4 mb-4">
+                            <input type="search" class="form-control w-35" placeholder="competence..."
+                                wire:model="searchTermC" />
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <input type="search" class="form-control w-35" placeholder="niveau..."
+                                wire:model="searchTermN" />
+                        </div> --}}
+                        <div class="col-md-4 mb-4">
+                            <input type="search" class="form-control w-35" placeholder="projet..."
+                                wire:model="searchTermP" />
+                        </div>
 
-
-                        <input type="search" class="form-control w-35" placeholder="niveau..."
-                            wire:model="searchTerm1" />
                     </div>
+
+
                 </div>
                 <div class="panel-body">
                     {{-- @if (Session::has('message'))
                              <div class="alert-success" role="alert">{{ Session::get('message') }}</div>
                         @endif --}}
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>nom</th>
-                                <th>prenom</th>
-                                <th>specialite</th>
-                                <th>date d integration</th>
-                                <th>competence requis </th>
-                                <th>Projet</th>
+                    @if ($this->searchTermP == '' && $this->searchTermN == '' && $this->searchTermC == '')
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>nom</th>
+                                    <th>prenom</th>
+                                    <th>competence requis </th>
+                                    <th>Projet</th>
 
 
-                            </tr>
-                        </thead>
+                                </tr>
+                            </thead>
 
-                        <tbody>
+                            <tbody>
 
-                            @foreach ($users as $user)
-                                @if ($user->type == 'USR')
-                                    <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td>{{ $user->nom }}</td>
-                                        <td>{{ $user->prenom }}</td>
-                                        <td>{{ $user->specialite }}</td>
-                                        <td>{{ $user->date_integration }}</td>
+                                @foreach ($users as $user)
+                                    @if ($user->type == 'USR')
+                                        <tr>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->nom }}</td>
+                                            <td>{{ $user->prenom }}</td>
+                                            <td>
+                                                <ul class="sclist">
+                                                    @foreach ($user->competences as $pa)
+                                                        @if ($pa->pivot->niveau != null)
+                                                            <li><i class="fa "></i>{{ $pa->intitule_competence }} :
+                                                                (niveau= {{ $pa->pivot->niveau }})
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
 
-
-                                        <td>
-                                            <ul class="sclist">
-
-                                                @foreach ($user->competences as $pa)
-                                                    <li><i class="fa "></i>{{ $pa->intitule_competence }} :
-                                                        (niveau= {{ $pa->pivot->niveau }})
-                                                    </li>
-                                                @endforeach
-
-                                            </ul>
-                                        </td>
-                                        <td>
-                                            {{-- @foreach ($user->competences as $c)
-                                                    @foreach ($projets as $projet)
-                                                        @foreach ($projet->competences as $p)
-                                                            @if ($c->intitule_competence == $p->intitule_competence && $c->pivot->niveau >= $p->pivot->niveau_requis_projet)
-                                                                @foreach ($competences->projects as $pro)
-                                                                    {{ $pro->intitule_projet }}
-                                                                @endforeach
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                @foreach ($projectss as $pro)
+                                                    @foreach ($pro->competences as $p)
+                                                        @foreach ($user->competences as $uc)
+                                                            @if ($p->pivot->niveau_requis_projet < $uc->pivot->niveau && $uc->intitule_competence == $p->intitule_competence)
+                                                                @if ($p->pivot->niveau_requis_projet != null)
+                                                                    <li>{{ $pro->intitule_projet }}</li>
+                                                                @endif
                                                             @endif
                                                         @endforeach
                                                     @endforeach
-                                                @endforeach --}}
-                                            @foreach ($user->competences as $c)
-                                                @if ($c->pivot->niveau >= 3)
-                                                    @foreach ($comp as $p)
-                                                        {{ $p->intitule_projet }}
+                                                @endforeach
+
+                                            </td>
+
+
+
+
+                                        </tr>
+                                    @endif
+                                @endforeach
+
+
+                            </tbody>
+
+                        </table>
+                        {{ $users->links('pagination-links') }}
+
+
+                    @endif
+                    @if ($this->searchTermP != '')
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>nom</th>
+                                    <th>prenom</th>
+                                    <th>competence requis </th>
+                                    <th>Projet</th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach ($users as $user)
+                                    @if ($user->type == 'USR')
+                                        <tr>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->nom }}</td>
+                                            <td>{{ $user->prenom }}</td>
+                                            <td>
+                                                <ul class="sclist">
+
+                                                    @foreach ($user->competences as $pa)
+                                                        @if ($pa->pivot->niveau != null)
+                                                            <li><i class="fa "></i>{{ $pa->intitule_competence }} :
+                                                                (niveau= {{ $pa->pivot->niveau }})
+                                                            </li>
+                                                        @endif
                                                     @endforeach
-                                                @endif
-                                            @endforeach
 
-                                        </td>
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                @foreach ($projectss1 as $pro)
+                                                    @foreach ($pro->competences as $p)
+                                                        @foreach ($user->competences as $uc)
+                                                            @if ($p->pivot->niveau_requis_projet < $uc->pivot->niveau && $uc->intitule_competence == $p->intitule_competence)
+                                                                @if ($p->pivot->niveau_requis_projet != null)
+                                                                    -{{ $pro->intitule_projet }}
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endforeach
+
+                                            </td>
 
 
 
 
-                                    </tr>
-                                @endif
-                            @endforeach
+                                        </tr>
+                                    @endif
+                                @endforeach
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    @endif
+                    @if ($this->searchTermC != '')
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>nom</th>
+                                    <th>prenom</th>
+                                    <th>competence requis </th>
+                                    <th>Projet</th>
+
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @foreach ($usersss as $user)
+                                    @if ($user->type == 'USR')
+                                        <tr>
+                                            <td>{{ $user->id }}</td>
+                                            <td>{{ $user->nom }}</td>
+                                            <td>{{ $user->prenom }}</td>
+                                            <td>
+                                                <ul class="sclist">
+
+                                                    @foreach ($user->competences as $pa)
+                                                        @if ($pa->pivot->niveau != null)
+                                                            <li><i class="fa "></i>{{ $pa->intitule_competence }} :
+                                                                (niveau= {{ $pa->pivot->niveau }})
+                                                            </li>
+                                                        @endif
+                                                    @endforeach
+
+                                                </ul>
+                                            </td>
+                                            <td>
+                                                @foreach ($projectss1 as $pro)
+                                                    @foreach ($pro->competences as $p)
+                                                        @foreach ($user->competences as $uc)
+                                                            @if ($p->pivot->niveau_requis_projet < $uc->pivot->niveau && $uc->intitule_competence == $p->intitule_competence)
+                                                                @if ($p->pivot->niveau_requis_projet != null)
+                                                                    -{{ $pro->intitule_projet }}
+                                                                @endif
+                                                            @endif
+                                                        @endforeach
+                                                    @endforeach
+                                                @endforeach
+
+                                            </td>
+
+
+
+
+                                        </tr>
+                                    @endif
+                                @endforeach
+
+                            </tbody>
+                        </table>
+                    @endif
+
 
                 </div>
             </div>

@@ -17,7 +17,7 @@
                         <label for="projet">Nom du projet :</label>
                         <select class="form-control" id="formGroupExampleInput" placeholder="Projet"
                             wire:model='intitule_projet'>
-
+                            <option value="0">choisir projet ...</option>
                             @foreach ($projects as $project)
                                 <option value="{{ $project->id }}">{{ $project->intitule_projet }}
                                 </option>
@@ -31,7 +31,7 @@
                     <label for="competence">Compétence requise :</label>
                     <select class="form-control" id="formGroupExampleInput2" placeholder="Compétence"
                         wire:model="intitule_competence">
-                        <option value="0"> </option>
+                        <option value="0">choisir compétence ...</option>
                         @foreach ($competences as $competence)
                             <option value="{{ $competence->id }}">
                                 {{ $competence->intitule_competence }}
@@ -46,7 +46,7 @@
 
                         <div class="form-group">
                             <label for="formGroupExampleInput3">Niveau :</label>
-                            <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Niveau"
+                            <input type="number" class="form-control" id="formGroupExampleInput2" placeholder="Niveau"
                                 wire:model="niveau_requis_projet">
                         </div>
                     </div>
