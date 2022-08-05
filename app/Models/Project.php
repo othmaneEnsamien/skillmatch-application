@@ -20,6 +20,6 @@ class Project extends Model
     }
     public function competences()
     {
-        return $this->belongsToMany(Competence::class)->withPivot('niveau_requis_projet')->withTimestamps();;
+        return $this->belongsToMany(Competence::class)->withPivot('niveau_requis_projet')->withTimestamps();
     }
 }

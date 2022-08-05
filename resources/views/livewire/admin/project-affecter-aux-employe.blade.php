@@ -95,15 +95,12 @@
                                                 @foreach ($projectss as $pro)
                                                     @foreach ($pro->competences as $p)
                                                         @foreach ($user->competences as $uc)
-                                                            @if ($p->pivot->niveau_requis_projet < $uc->pivot->niveau && $uc->intitule_competence == $p->intitule_competence)
-                                                                @if ($p->pivot->niveau_requis_projet != null)
-                                                                    <li>{{ $pro->intitule_projet }}</li>
-                                                                @endif
+                                                            @if ($p->pivot->niveau_requis_projet <= $uc->pivot->niveau && $uc->intitule_competence == $p->intitule_competence)
+                                                                <li>{{ $pro->intitule_projet }}</li>
                                                             @endif
                                                         @endforeach
                                                     @endforeach
                                                 @endforeach
-
                                             </td>
 
 

@@ -77,7 +77,7 @@
                                                     </ul>
                                                     <button class="btn btn-success btn-sm " type="button"> <a
                                                             href="#" style="padding:10px"
-                                                            onclick="confirm('Are you sure , You want delete this Category?')||event.stopImmediatePropagation() "
+                                                            onclick="confirm('Are you sure , You want delete this User ?')||event.stopImmediatePropagation() "
                                                             wire:click.prevent="deleteusers({{ $user->id }})">
                                                             <i class="fa fa-times text-danger fa-2x"></i></a> DELETE
                                                     </button>

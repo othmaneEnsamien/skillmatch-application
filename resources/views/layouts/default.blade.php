@@ -55,20 +55,16 @@
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ route('competenceuser') }}">Infos Users</a></li>
                                     <li><a href="{{ route('projetaffecter') }}">Projet Users</a></li>
-                                    <li><a href="{{ route('admin.competences') }}">Gestion Competences</a></li>
-                                    <li><a href="{{ route('admin.projects') }}">Gestion Projets</a></li>
-                                    <li><a href="{{ route('adminprojetcompetence') }}">Gestion Projet Competence</a></li>
-                                    <li><a href="{{ route('admin.form-search-employee') }}">Affectation des competences aux
-                                            projets</a></li>
-                                    <li>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            style="padding: 12px">
-                                            @csrf
-                                    <li>
-                                        <a style="color: rgb(63, 63, 63)" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log
-                                            Out</a>
-                                    </li>
+                                    <li><a href="{{ route('admin.list-competences') }}">Gestion Competences</a></li>
+                                    <li><a href="{{ route('admin.list-projets') }}">Gestion Projets</a></li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        style="padding: 12px">
+                                        @csrf
+                                        <li>
+                                            <a style="color: rgb(63, 63, 63)" href="{{ route('logout') }}"
+                                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Log
+                                                Out</a>
+                                        </li>
                                     </form>
                             </li>
 

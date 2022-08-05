@@ -43,7 +43,7 @@ class ProjectAffecterAuxEmploye extends Component
         // })->whereHas('competence_user', function ($query) {
         //     return $query->where('niveau', '>=', 3);
         // })->get();
-        $competences = Competence::with('projects')->get();
+        $competences = Competence::distinct('projects')->get();
         $competenceuser = CompetenceUser::all();
 
         // $comp = CompetenceTask::join('competence_user', 'competence_project.competence_id', '=', 'competence_user.competence_id')
@@ -58,7 +58,7 @@ class ProjectAffecterAuxEmploye extends Component
         //     ->distinct()
         //     ->get();
         $user = User::find(Auth::user()->id)->get();
-        $projectss = Project::with('competences')->get();
+        $projectss = Project::with('competences')->distinct()->get();
         $projectss1 = Project::with('competences')->where('intitule_projet', 'LIKE', '%' . $this->searchTermP . '%')->get();
         $projects = DB::table('projects')
             ->join('competence_project', 'competence_project.project_id', '=', 'projects.id')

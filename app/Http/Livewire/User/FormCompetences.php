@@ -16,10 +16,14 @@ class FormCompetences extends Component
     public $niveau;
 
 
+    protected $listeners = [
+        'refresh-me' => '$refresh'
+    ];
 
     public function store()
     {
-        $userr = Auth::user()->id;
+        $userr = User::where('id', Auth::user()->id)->first();
+        $userid = $userr->id;
         // // $newCompetence = new Competence();
         // // $newCompetence->intitule_competence = $this->intitule_competence;
         // // $newCompetence->save();
@@ -39,7 +43,10 @@ class FormCompetences extends Component
         $competencess = Competence::find($this->intitule_competence);
         $competencess->save();
 
-        $competencess->users()->attach($userr, ['niveau' => $this->niveau]);
+        $competencess->users()->attach($userid, ['niveau' => $this->niveau]);
+        $this->emitself('refresh-me');
+        $this->intitule_competence = '';
+        $this->niveau = '';
 
         //$competencess->users()->attach($userr, ['niveau' => $this->niveau]);
         // $competencess = Competence::find($this->intitule_competence);
